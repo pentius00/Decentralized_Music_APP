@@ -1,0 +1,18 @@
+pragma solidity ^0.5.0;
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+
+contract Song_cetificate is ERC721Full {
+    constructor() public ERC721Full("Certificate", "SONG") {}
+
+    function awardCertificate(address artist, string memory tokenURI)
+        public
+        returns (uint256)
+    {
+        uint256 newCertificateId = totalSupply();
+        _mint(artist, newCertificateId);
+        _setTokenURI(newCertificateId, tokenURI);
+
+        return newCertificateId;
+    }
+}
